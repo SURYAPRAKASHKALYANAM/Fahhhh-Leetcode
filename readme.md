@@ -1,3 +1,26 @@
+# 🎧 LeetCode Meme-ifier Pro
+
+**LeetCode Meme-ifier Pro** is a productivity-meets-humor browser extension designed to turn the grind of competitive programming into an interactive experience. It monitors your LeetCode submissions in real-time and provides instant auditory feedback based on the result.
+
+
+
+## ✨ Features
+
+* **Smart Result Detection**: Uses a high-precision `MutationObserver` to instantly trigger sounds for `Accepted`, `Wrong Answer`, and `Runtime Error` statuses.
+* **Curated Meme Library**: Choose from 22 iconic sounds, including *Emotional Damage*, *Vine Boom*, *Coffin Dance*, and *Among Us Role Reveal*.
+* **Sensible Defaults**: Pre-configured to play the **Spiderman Theme** for success and **Faaah!** for failure.
+* **Pro Audio Controls**:
+    * **Volume Slider**: Fine-tune the intensity of your memes to suit your environment.
+    * **Max Duration**: Set a cutoff timer (in seconds) to prevent long audio clips from overlapping your next thought.
+    * **Interactive Preview**: A sleek UI that allows you to toggle between **Play (▶️)** and **Pause (⏸️)** for any sound before saving.
+* **Universal Compatibility**: Fully compatible with **Brave**, **Google Chrome**, and **Microsoft Edge**.
+
+---
+
+## Demo
+https://github.com/user-attachments/assets/d8bf2340-304f-4af5-a3fa-d536c998ca2b
+
+
 ## 🛠️ Installation & Setup
 
 ### 1. Clone the Repository
@@ -51,3 +74,4 @@ Ensure your local folder structure matches the following:
 Feel free to fork this repository, add new sounds to the `/sounds` folder, and update the `memeNames` object in `popup.js`.
 
 **Happy Coding!** 💻🔥
+
