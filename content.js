@@ -5,7 +5,6 @@ let isWaitingForSubmission = false;
 window.addEventListener('click', () => {
     if (!audioEnabled) {
         audioEnabled = true;
-        console.log("🔊 Audio Context Unlocked");
     }
 });
 
@@ -15,7 +14,6 @@ document.addEventListener('click', (e) => {
     e.target.closest('button')?.innerText.includes("Submit");
     
     if (isSubmitBtn) {
-        console.log("🚀 Submission sent! Waiting for results...");
         isWaitingForSubmission = true;
         observer.observe(document.body, { childList: true, subtree: true });
     }
@@ -59,20 +57,18 @@ const observer = new MutationObserver(() => {
     }
 
     const errorSpan = document.querySelector('span[data-e2e-locator="console-result"]');
-    // 3. Check for Runtime Error (The new Span you found)
+    // 3. Check for Runtime Error 
     const isRuntimeError = errorSpan && errorSpan.innerText.includes("Runtime Error");
 
-    // 4 . compile Error check (The new Span you found)
+    // 4 . compile Error check 
     const isCompileError = errorSpan && errorSpan.innerText.includes("Compile Error");
 
     // 5. TLE 
     const isTLE = errorSpan && errorSpan.innerText.includes("Time Limit Exceeded");    
     if (successSpan) {
-        console.log("Trigger:  Succcess! 🕷️");
         playSelectedMeme('successMeme');
         isWaitingForSubmission = false;
     } else if (wrongAnswerFound || isRuntimeError || isCompileError || isTLE) {
-        console.log("Trigger: Failed! 😫");
         playSelectedMeme('failMeme');
         isWaitingForSubmission = false;
     }
