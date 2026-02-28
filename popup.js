@@ -45,6 +45,7 @@ const populateDropdowns = () => {
 
     document.getElementById('successSelect').value = "spiderman-meme-song.mp3"; // Default Success
     document.getElementById('failSelect').value = "fahhhhh.mp3"; // Default Fail
+    document.getElementById("saveBtn").click(); // Save defaults to storage
 };
 
 populateDropdowns();

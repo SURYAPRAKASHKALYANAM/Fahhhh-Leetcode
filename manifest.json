@@ -1,6 +1,13 @@
 {
   "manifest_version": 3,
   "name": "Fahh Extension(leetcode)",
+  "description": "Play memes on Leetcode submissions! makes your coding journey more fun and rewarding. Celebrate your successes with hilarious memes and turn those coding challenges into moments of joy!",
+  "author": "suryaprakash Kalyanam",
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  },
   "version": "6.9",
   "permissions": ["storage"],
   "action": {

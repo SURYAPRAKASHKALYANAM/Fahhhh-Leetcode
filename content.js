@@ -1,5 +1,6 @@
 let audioEnabled = false;
 let isWaitingForSubmission = false;
+let currentResultElement = null;
 
 // 1. Unlock Audio Context
 window.addEventListener('click', () => {
@@ -15,6 +16,7 @@ document.addEventListener('click', (e) => {
     
     if (isSubmitBtn) {
         isWaitingForSubmission = true;
+        currentResultElement = document.querySelector('span.marked_as_success, h3');
         observer.observe(document.body, { childList: true, subtree: true });
     }
 });
@@ -48,10 +50,10 @@ const observer = new MutationObserver(() => {
     
     // Check for "Wrong Answer" in headers
     const headers = document.querySelectorAll('h3');
-    let wrongAnswerFound = false;
+    let wrongAnswerEl = null;
     for (let h3 of headers) {
         if (h3.innerText.includes("Wrong Answer")) {
-            wrongAnswerFound = true;
+            wrongAnswerEl = h3;
             break;
         }
     }
@@ -64,12 +66,23 @@ const observer = new MutationObserver(() => {
     const isCompileError = errorSpan && errorSpan.innerText.includes("Compile Error");
 
     // 5. TLE 
-    const isTLE = errorSpan && errorSpan.innerText.includes("Time Limit Exceeded");    
-    if (successSpan) {
+    const isTLE = errorSpan && errorSpan.innerText.includes("Time Limit Exceeded");   
+    
+    const failureEl = wrongAnswerEl || errorSpan;
+    const failureSpan = failureEl && (
+        failureEl.innerText.includes("Wrong Answer") ||
+        failureEl.innerText.includes("Runtime Error") ||
+        failureEl.innerText.includes("Compile Error") ||
+        failureEl.innerText.includes("Time Limit Exceeded")
+    );
+
+    if (successSpan && successSpan !== currentResultElement) {
         playSelectedMeme('successMeme');
         isWaitingForSubmission = false;
-    } else if (wrongAnswerFound || isRuntimeError || isCompileError || isTLE) {
+        currentResultElement = successSpan;
+    } else if ( failureSpan && currentResultElement !== failureSpan) {
         playSelectedMeme('failMeme');
         isWaitingForSubmission = false;
+        currentResultElement = failureSpan;
     }
 });
