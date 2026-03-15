@@ -89,11 +89,25 @@
     }
 
     #status { font-size: 11px; color: var(--success); text-align: center; margin-top: 8px; height: 14px; }
+
+    /* checkbox  style*/
+    input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+      accent-color: var(--accent);
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
   <h3>🎧 Meme Settings Pro</h3>
   
+  <!-- checkbox to off extension -->
+  <div class="section">
+    <label for="disableExtension">Disable Extension</label>
+    <input type="checkbox" id="disableExtension">
+  </div>
+
   <div class="section">
     <label style="color: var(--success)">SUCCESS (ACCEPTED)</label>
     <div class="row">

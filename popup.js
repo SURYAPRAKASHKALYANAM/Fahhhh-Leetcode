@@ -91,15 +91,9 @@ const playPreview = (selectId, btnId) => {
 
 document.getElementById('playSuccess').onclick = () => playPreview('successSelect', 'playSuccess');
 document.getElementById('playFail').onclick = () => playPreview('failSelect', 'playFail');
-
-// Load/Save Settings
-chrome.storage.local.get(['successMeme', 'failMeme', 'volume', 'duration'], (res) => {
-    if (res.successMeme) successSel.value = res.successMeme;
-    if (res.failMeme) failSel.value = res.failMeme;
-    if (res.volume!=undefined) document.getElementById('volumeRange').value = res.volume;
-    if (res.duration) document.getElementById('durationLimit').value = res.duration;
-});
-
+document.getElementById('enabledToggle').onchange = (e) => {
+    chrome.storage.local.set({ extensionEnabled: e.target.checked });
+};
 document.getElementById('saveBtn').addEventListener('click', () => {
     chrome.storage.local.set({
         successMeme: successSel.value,
@@ -111,4 +105,13 @@ document.getElementById('saveBtn').addEventListener('click', () => {
         status.innerText = "Preferences Saved! ✅";
         setTimeout(() => status.innerText = "", 2000);
     });
+});
+
+// Load/Save Settings
+chrome.storage.local.get(['successMeme', 'failMeme', 'volume', 'duration' , "extensionEnabled"], (res) => {
+    if (res.successMeme) successSel.value = res.successMeme;
+    if (res.failMeme) failSel.value = res.failMeme;
+    if (res.volume!=undefined) document.getElementById('volumeRange').value = res.volume;
+    if (res.duration) document.getElementById('durationLimit').value = res.duration;
+    document.getElementById('enabledToggle').checked = res.extensionEnabled !== false;
 });
